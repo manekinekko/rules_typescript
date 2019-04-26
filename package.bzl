@@ -30,8 +30,12 @@ def rules_typescript_dev_dependencies():
     _maybe(
         http_archive,
         name = "build_bazel_rules_nodejs",
-        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.29.0/rules_nodejs-0.29.0.tar.gz"],
-        sha256 = "1db950bbd27fb2581866e307c0130983471d4c3cd49c46063a2503ca7b6770a4",
+        # TODO(manekinekko): We need https://github.com/sfeir-open-source/rules_nodejs/commit/3b663dde0352d296d1ef72743faf37e774028e50 which 
+        # introduces support for the new build_bazel_rules_nodejs#entry_point Label type (see https://github.com/bazelbuild/rules_nodejs/pull/480) 
+        # Switch to https://github.com/bazelbuild/rules_nodejs/ when the changes have been released
+        urls = ["https://github.com/sfeir-open-source/rules_nodejs/archive/3b663dde0352d296d1ef72743faf37e774028e50.zip"],
+        strip_prefix = "rules_nodejs-3b663dde0352d296d1ef72743faf37e774028e50",
+        sha256 = "dc780fee0d78c6dba852a08bad73eee71ea89b16ccc7488d9d2bd98923091d72",
     )
 
     # For protocol buffers
